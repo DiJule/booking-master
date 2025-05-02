@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyADMArBmOh4SXkoLJk-8R-cNzHOiX67Iq0",
-  authDomain: "booking-31f13.firebaseapp.com",
-  projectId: "booking-31f13",
-  storageBucket: "booking-31f13.firebasestorage.app",
-  messagingSenderId: "913899227063",
-  appId: "1:913899227063:web:3c6441c0cd2471a0af0a32"
+  apiKey: "AIzaSyCCgbnNGGlRwUiW_Nqq75v9cACuNqpQbNc",
+  authDomain: "booking-master-6eaee.firebaseapp.com",
+  projectId: "booking-master-6eaee",
+  storageBucket: "booking-master-6eaee.firebasestorage.app",
+  messagingSenderId: "176128371052",
+  appId: "1:176128371052:web:e63920a5fa50a5f6d5ab49"
 };
 
 // Initialize Firebase
