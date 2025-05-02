@@ -1,0 +1,28 @@
+<div class="p-4 lg:p-10">
+  <div class="p-6 max-w-6xl mx-auto bg-white shadow-lg rounded-lg">
+    <!-- Back to Home Button -->
+    <button
+      class="mb-5 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-md transition duration-300"
+      routerLink="/"
+    >
+      Повернутись на головну сторінку
+    </button>
+
+    <!-- Main Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Left Section: Room Details -->
+      @if(room()) {
+      <app-room-details
+        [room]="room()"
+        [daysCount]="selectedDatesRangeCount()"
+        [checkInDate]="checkInDate()"
+        [checkOutDate]="checkOutDate()"
+        [amountOfPeople]="amountOfPeople()"
+      ></app-room-details>
+      }
+
+      <!-- Right Section: Booking Form -->
+      <app-booking-form (formSubmit)="onSubmit($event)"></app-booking-form>
+    </div>
+  </div>
+</div>
