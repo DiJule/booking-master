@@ -31,7 +31,7 @@ export class RoomDetailsComponent {
   checkOutDate = input.required<string>();
   amountOfPeople = input.required<number>();
 
-  totalPrice = computed(() => this.room().pricePerNight * this.daysCount());
+  totalPrice = computed(() => this.room().pricePerNight * (this.daysCount() - 1));
 
   formattedPeopleWord = computed(() => {
     return UtilsFunctions.formatPeopleWord(+this.amountOfPeople());

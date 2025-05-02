@@ -46,7 +46,7 @@ export class BookingService {
       );
       console.log(hasConflict);
 
-      return room.maxGuests === people && !hasConflict;
+      return room.maxGuests >= people && !hasConflict;
     });
     console.log(filtered);
 
@@ -55,11 +55,18 @@ export class BookingService {
 
   setBookedDates(roomId: string, selectedDates: string[]): void {
     this._filteredRooms.set(
-      this._filteredRooms().map((room) => {
+      this._filteredRooms().map((room) => {        
         if (room.id === roomId) {
+          if(room.bookedDates?.length > 0) {
+
+            return {
+              ...room,
+              bookedDates: [...room.bookedDates, ...selectedDates],
+            };
+          } 
           return {
             ...room,
-            bookedDates: [...room.bookedDates, ...selectedDates],
+            bookedDates: [...selectedDates],
           };
         }
 

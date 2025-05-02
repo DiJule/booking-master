@@ -55,7 +55,7 @@
     <div class="mt-4">
       <div class="text-sm text-gray-700">
         Загальний термін перебування:
-        <span class="font-semibold">{{ daysCount() }} ночей</span>
+        <span class="font-semibold">{{ daysCount() - 1}} ночей</span>
       </div>
     </div>
 
@@ -79,7 +79,7 @@
       Кінцева ціна: ₴{{ totalPrice() }}
     </div>
     <div class="text-sm text-gray-600">
-      (Розраховано на основі вибраних {{ daysCount() }} ночей)
+      (Розраховано на основі вибраних {{ daysCount() - 1 }} ночей)
     </div>
   </section>
 </div>
