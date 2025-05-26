@@ -20,6 +20,7 @@ export class SearchService {
   amountOfPeople = computed(() => this._amountOfPeople());
 
   updateSelectedDates(checkIn: Date, checkOut: Date): void {
+
     const selectedDatesRange = UtilsFunctions.getDatesInRange(
       checkIn,
       checkOut

@@ -39,16 +39,15 @@ export class BookingService {
         this._userBookedRooms.set(filteredRooms[0]);
       });
   }
-  filterRooms(selectedDates: string[], people: number): void {
+  filterRooms(selectedDates: string[], people: number): void {    
     const filtered = this._hotelRooms().filter((room) => {
-      const hasConflict = selectedDates.some((date) =>
-        room.bookedDates.includes(date)
-      );
-      console.log(hasConflict);
+      const hasConflict = selectedDates.some((date) => {  
+        if(!room.bookedDates) return false
+        return room.bookedDates.includes(date)}
+      );      
 
       return room.maxGuests >= people && !hasConflict;
     });
-    console.log(filtered);
 
     this._filteredRooms.set(filtered);
   }

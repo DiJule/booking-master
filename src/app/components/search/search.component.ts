@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RoomCardComponent } from '../room-card/room-card.component';
 import { dateRangeValidator } from '../../validators/date-range.validator';
+import { dateNotEqualValidator } from '../../validators/date-not-equal.validator'; // Імпорт вашого валідатора
 import { BookingService } from '../../services/booking.service';
 import { SearchService } from '../../services/search.service';
 
@@ -65,15 +66,17 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
-    this.onSearch();
   }
 
   initializeForm() {
-    this.searchForm = this.fb.group({
-      checkInDate: [null, [Validators.required, dateRangeValidator]],
-      checkOutDate: [null, [Validators.required, dateRangeValidator]],
-      people: [1, [Validators.required, Validators.min(1)]],
-    });
+    this.searchForm = this.fb.group(
+      {
+        checkInDate: [null, [Validators.required, dateRangeValidator]],
+        checkOutDate: [null, [Validators.required, dateRangeValidator]],
+        people: [1, [Validators.required, Validators.min(1)]],
+      },
+      { validators: dateNotEqualValidator }
+    );
   }
 
   increaseValue(controlName: string, event: Event): void {
@@ -91,15 +94,19 @@ export class SearchComponent implements OnInit {
       control?.setValue(currentValue - 1);
     }
   }
+
   onSearch(): void {
+    if (this.searchForm.invalid) {
+      this.searchForm.markAllAsTouched();
+      return;
+    }
+
     const { checkInDate, checkOutDate, people } = this.searchForm.value;
 
-    if (checkInDate && checkOutDate) {
-      this.searchService.searchRooms(
-        new Date(checkInDate),
-        new Date(checkOutDate),
-        people
-      );
-    }
+    this.searchService.searchRooms(
+      new Date(checkInDate),
+      new Date(checkOutDate),
+      people
+    );
   }
 }
